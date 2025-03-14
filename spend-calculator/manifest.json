@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Spend Calculator",
+  "version": "1.0",
+  "description": "Calculate your spend on Ola and Zepto",
+  "permissions": ["activeTab", "scripting", "cookies", "tabs"],
+  "host_permissions": [
+    "https://book.olacabs.com/*",
+    "https://www.zeptonow.com/*",
+    "https://api.zeptonow.com/*"
+  ],
+  "action": {
+    "default_popup": "select.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

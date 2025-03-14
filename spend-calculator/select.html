@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spend Calculator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        width: 420px;
+        padding: 20px;
+        font-family: "Poppins", sans-serif;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .platform-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+      }
+      .platform-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .ola-box {
+        background-color: #000000;
+      }
+      .ola-box:hover {
+        background-color: #333333;
+      }
+      .zepto-box {
+        background-color: #8c52ff;
+      }
+      .zepto-box:hover {
+        background-color: #7340d8;
+      }
+      .logo-container {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      .logo {
+        max-height: 100%;
+        max-width: 100%;
+      }
+      .platform-name {
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Choose Platform</h1>
+    <div class="container">
+      <a href="ola.html" class="platform-box ola-box">
+        <div class="logo-container">
+          <img
+            src="https://s3-ap-southeast-1.amazonaws.com/ola-prod-website/ola-white-logo.svg"
+            alt="Ola Logo"
+            class="logo"
+          />
+        </div>
+        <div class="platform-name">Calculate Ola Spend</div>
+      </a>
+      <a href="zepto.html" class="platform-box zepto-box">
+        <div class="logo-container">
+          <img
+            src="https://www.zeptonow.com/images/logo.svg"
+            alt="Zepto Logo"
+            class="logo"
+          />
+        </div>
+        <div class="platform-name">Calculate Zepto Spend</div>
+      </a>
+    </div>
+  </body>
+</html>
