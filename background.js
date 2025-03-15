@@ -10,6 +10,8 @@ chrome.action.onClicked.addListener(async (tab) => {
     popupPage = "ola.html";
   } else if (url.includes("zeptonow.com")) {
     popupPage = "zepto.html";
+  } else if (url.includes("m.rapido.bike")) {
+    popupPage = "rapido.html";
   }
 
   chrome.action.setPopup({ tabId: tab.id, popup: popupPage });
@@ -24,6 +26,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       popupPage = "ola.html";
     } else if (changeInfo.url.includes("zeptonow.com")) {
       popupPage = "zepto.html";
+    } else if (changeInfo.url.includes("m.rapido.bike")) {
+      popupPage = "rapido.html";
     }
 
     chrome.action.setPopup({ tabId: tabId, popup: popupPage });
@@ -39,6 +43,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           "https://book.olacabs.com/*",
           "https://www.zeptonow.com/*",
           "https://api.zeptonow.com/*",
+          "https://m.rapido.bike/*",
         ],
       },
       (granted) => {

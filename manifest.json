@@ -2,12 +2,13 @@
   "manifest_version": 3,
   "name": "Spend Calculator",
   "version": "1.0",
-  "description": "Calculate your spend on Ola and Zepto",
+  "description": "Calculate your spend on Ola, Zepto, and Rapido",
   "permissions": ["activeTab", "scripting", "cookies", "tabs"],
   "host_permissions": [
     "https://book.olacabs.com/*",
     "https://www.zeptonow.com/*",
-    "https://api.zeptonow.com/*"
+    "https://api.zeptonow.com/*",
+    "https://m.rapido.bike/*"
   ],
   "action": {
     "default_popup": "select.html",

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rapido Spend Calculator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        width: 420px;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+      .container {
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin: 16px;
+        background-color: white;
+      }
+      .header {
+        text-align: center;
+        padding: 20px;
+        background: linear-gradient(135deg, #ffec00 0%, #ffc400 100%);
+        color: white;
+        border-radius: 16px 16px 0 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .header:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,400 C150,400 200,200 400,250 C600,300 600,400 600,500 L600,600 L0,600 Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
+        background-size: cover;
+        opacity: 0.3;
+      }
+      .waves {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 134' xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M0,34 C166.8,69.9 373.5,49.7 600,8 C826.5,-33.6 1033.2,34.4 1200,98 L1200,134 L0,134 Z'/%3E%3C/svg%3E");
+        background-size: cover;
+        background-position: bottom;
+      }
+      .logo-container {
+        position: relative;
+        z-index: 1;
+      }
+      .logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 10px;
+        /* border-radius: 50%; */
+        /* background-color: white; */
+        padding: 10px;
+      }
+      h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0 0 5px 0;
+        color: white;
+      }
+      .subtitle {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 15px;
+      }
+      .body-container {
+        padding: 20px;
+      }
+      .steps {
+        background-color: #fffde6;
+        border-radius: 12px;
+        padding: 15px;
+        margin-top: 25px;
+        border: 1px solid #fff8b3;
+      }
+      .steps-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: #ffc400;
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+      .step {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
+      }
+      .step:last-child {
+        margin-bottom: 0;
+      }
+      .step-number {
+        background-color: #ffc400;
+        color: white;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 600;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+      .step-text {
+        font-size: 14px;
+        line-height: 1.4;
+        color: #4a4a4a;
+      }
+      button {
+        background: linear-gradient(135deg, #ffec00 0%, #ffc400 100%);
+        color: #333;
+        padding: 14px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(255, 196, 0, 0.3);
+      }
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(255, 196, 0, 0.4);
+      }
+      button:active {
+        transform: translateY(0);
+      }
+      button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+      button:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      button:hover:after {
+        opacity: 1;
+      }
+      .button-icon {
+        margin-right: 8px;
+      }
+      #result {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 36px;
+        font-weight: 700;
+        color: #ffc400;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.5s, transform 0.5s;
+        position: relative;
+      }
+      #result.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #result:before {
+        content: "Total Spend";
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #666;
+        margin-bottom: 5px;
+      }
+      .error {
+        color: #e53935;
+        font-size: 14px;
+        margin-top: 10px;
+        font-weight: 500;
+        text-align: center;
+        padding: 8px;
+        background-color: rgba(229, 57, 53, 0.1);
+        border-radius: 6px;
+        display: none;
+      }
+      .loading {
+        display: none;
+        text-align: center;
+        margin: 20px 0;
+      }
+      .loader {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #fffde6;
+        border-radius: 50%;
+        border-top-color: #ffc400;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 10px;
+      }
+      @keyframes spin {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .loading-text {
+        font-size: 14px;
+        color: #666;
+      }
+      .loading-progress {
+        margin-top: 8px;
+        height: 4px;
+        width: 100%;
+        background-color: #fffde6;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .loading-bar {
+        height: 100%;
+        width: 0%;
+        background-color: #ffc400;
+        border-radius: 2px;
+        transition: width 0.3s;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .stat-item {
+        text-align: center;
+        background-color: #fffde6;
+        padding: 15px;
+        border-radius: 10px;
+        transition: all 0.2s;
+        border: 1px solid #fff8b3;
+      }
+      .stat-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        background-color: #fff8b3;
+      }
+      .stat-value {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ffc400;
+        margin-bottom: 5px;
+      }
+      .stat-label {
+        font-size: 12px;
+        color: #666;
+      }
+      .rating {
+        color: #ffc107;
+      }
+      .credit {
+        text-align: center;
+        font-size: 11px;
+        color: #9e9e9e;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid #fffde6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo-container">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4q0Ek5r-0jySgkOF2hmdp1La6Co93oUvfyw&s"
+            alt="Rapido Logo"
+            class="logo"
+          />
+          <h2>Spend Calculator</h2>
+          <div class="subtitle">Track your Rapido spending habits</div>
+        </div>
+      </div>
+
+      <div class="body-container">
+        <button id="calculateBtn">Calculate Total Spend</button>
+
+        <div class="loading">
+          <div class="loader"></div>
+          <div class="loading-text">Calculating your total spend...</div>
+          <div class="loading-progress">
+            <div class="loading-bar" id="progressBar"></div>
+          </div>
+        </div>
+
+        <div id="result"></div>
+        <div id="error" class="error"></div>
+
+        <div class="stats" id="statsGrid" style="display: none">
+          <div class="stat-item">
+            <div class="stat-value" id="orderCount">-</div>
+            <div class="stat-label">Total Rides</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="avgOrder">-</div>
+            <div class="stat-label">Avg. Ride Value</div>
+          </div>
+        </div>
+
+        <div class="steps" id="instructions">
+          <h3 class="steps-title">How to use:</h3>
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-text">
+              Navigate to Rapido orders page (https://m.rapido.bike/my-rides)
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-text">
+              Make sure you're logged in to your Rapido account
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">
+              Click the Calculate button to analyze your spending
+            </div>
+          </div>
+        </div>
+
+        <div class="credit">Rapido Spend Calculator v1.0</div>
+      </div>
+    </div>
+    <script src="rapido.js"></script>
+  </body>
+</html>
