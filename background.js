@@ -12,6 +12,8 @@ chrome.action.onClicked.addListener(async (tab) => {
     popupPage = "zepto.html";
   } else if (url.includes("m.rapido.bike")) {
     popupPage = "rapido.html";
+  } else if (url.includes("riders.uber.com")) {
+    popupPage = "uber.html";
   }
 
   chrome.action.setPopup({ tabId: tab.id, popup: popupPage });
@@ -28,6 +30,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       popupPage = "zepto.html";
     } else if (changeInfo.url.includes("m.rapido.bike")) {
       popupPage = "rapido.html";
+    } else if (changeInfo.url.includes("riders.uber.com")) {
+      popupPage = "uber.html";
     }
 
     chrome.action.setPopup({ tabId: tabId, popup: popupPage });
@@ -44,6 +48,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           "https://www.zeptonow.com/*",
           "https://api.zeptonow.com/*",
           "https://m.rapido.bike/*",
+          "https://riders.uber.com/*",
         ],
       },
       (granted) => {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ola Spend Calculator</title>
+    <title>Uber Spend Calculator</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
@@ -25,7 +25,7 @@
       .header {
         text-align: center;
         padding: 20px;
-        background: linear-gradient(135deg, #20bf55 0%, #01baef 100%);
+        background: linear-gradient(135deg, #000000 0%, #404040 100%);
         color: white;
         border-radius: 16px 16px 0 0;
         position: relative;
@@ -60,6 +60,7 @@
         width: 120px;
         height: auto;
         margin-bottom: 10px;
+        padding: 10px;
       }
       h2 {
         font-size: 24px;
@@ -76,15 +77,16 @@
         padding: 20px;
       }
       .steps {
-        background-color: #e6f7ff;
+        background-color: #f0f0f0;
         border-radius: 12px;
         padding: 15px;
         margin-top: 25px;
+        border: 1px solid #e0e0e0;
       }
       .steps-title {
         font-size: 15px;
         font-weight: 600;
-        color: #20bf55;
+        color: #000000;
         margin-top: 0;
         margin-bottom: 12px;
       }
@@ -97,7 +99,7 @@
         margin-bottom: 0;
       }
       .step-number {
-        background-color: #01baef;
+        background-color: #000000;
         color: white;
         width: 24px;
         height: 24px;
@@ -116,23 +118,23 @@
         color: #4a4a4a;
       }
       button {
-        background: linear-gradient(135deg, #20bf55 0%, #01baef 100%);
+        background: linear-gradient(135deg, #000000 0%, #404040 100%);
         color: white;
         padding: 14px 24px;
         border: none;
         border-radius: 8px;
         cursor: pointer;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 600;
         transition: all 0.3s;
         width: 100%;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(32, 191, 85, 0.2);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       }
       button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(32, 191, 85, 0.3);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
       }
       button:active {
         transform: translateY(0);
@@ -169,7 +171,7 @@
         margin: 20px 0;
         font-size: 36px;
         font-weight: 700;
-        color: #20bf55;
+        color: #000000;
         opacity: 0;
         transform: translateY(10px);
         transition: opacity 0.5s, transform 0.5s;
@@ -206,9 +208,9 @@
       .loader {
         width: 40px;
         height: 40px;
-        border: 3px solid #e6f7ff;
+        border: 3px solid #f0f0f0;
         border-radius: 50%;
-        border-top-color: #01baef;
+        border-top-color: #000000;
         animation: spin 1s linear infinite;
         margin: 0 auto 10px;
       }
@@ -225,14 +227,14 @@
         margin-top: 8px;
         height: 4px;
         width: 100%;
-        background-color: #e6f7ff;
+        background-color: #f0f0f0;
         border-radius: 2px;
         overflow: hidden;
       }
       .loading-bar {
         height: 100%;
         width: 0%;
-        background-color: #01baef;
+        background-color: #000000;
         border-radius: 2px;
         transition: width 0.3s;
       }
@@ -244,21 +246,21 @@
       }
       .stat-item {
         text-align: center;
-        background-color: #e6f7ff;
+        background-color: #f0f0f0;
         padding: 15px;
         border-radius: 10px;
         transition: all 0.2s;
-        border: 1px solid #c8ebff;
+        border: 1px solid #e0e0e0;
       }
       .stat-item:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        background-color: #c8ebff;
+        background-color: #e0e0e0;
       }
       .stat-value {
         font-size: 20px;
         font-weight: 700;
-        color: #20bf55;
+        color: #000000;
         margin-bottom: 5px;
       }
       .stat-label {
@@ -274,7 +276,7 @@
         color: #9e9e9e;
         margin-top: 20px;
         padding-top: 10px;
-        border-top: 1px solid #e6f7ff;
+        border-top: 1px solid #f0f0f0;
       }
     </style>
   </head>
@@ -284,12 +286,12 @@
         <div class="waves"></div>
         <div class="logo-container">
           <img
-            src="https://upload.wikimedia.org/wikipedia/en/0/0f/Ola_Cabs_logo.svg"
-            alt="Ola Logo"
+            src="https://helios-i.mashable.com/imagery/articles/03y6VwlrZqnsuvnwR8CtGAL/hero-image.fill.size_1248x702.v1623372852.jpg"
+            alt="Uber Logo"
             class="logo"
           />
           <h2>Spend Calculator</h2>
-          <div class="subtitle">Track your Ola spending habits</div>
+          <div class="subtitle">Track your Uber spending habits</div>
         </div>
       </div>
 
@@ -323,13 +325,13 @@
           <div class="step">
             <div class="step-number">1</div>
             <div class="step-text">
-              Navigate to Ola rides page (https://book.olacabs.com/your-rides)
+              Navigate to Uber rides page (https://riders.uber.com/trips)
             </div>
           </div>
           <div class="step">
             <div class="step-number">2</div>
             <div class="step-text">
-              Make sure you're logged in to your Ola account
+              Make sure you're logged in to your Uber account
             </div>
           </div>
           <div class="step">
@@ -340,9 +342,9 @@
           </div>
         </div>
 
-        <div class="credit">Ola Spend Calculator v1.0</div>
+        <div class="credit">Uber Spend Calculator v1.0</div>
       </div>
     </div>
-    <script src="ola.js"></script>
+    <script src="uber.js"></script>
   </body>
 </html>

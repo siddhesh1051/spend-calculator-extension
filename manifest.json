@@ -8,7 +8,8 @@
     "https://book.olacabs.com/*",
     "https://www.zeptonow.com/*",
     "https://api.zeptonow.com/*",
-    "https://m.rapido.bike/*"
+    "https://m.rapido.bike/*",
+    "https://riders.uber.com/*"
   ],
   "action": {
     "default_popup": "select.html",
