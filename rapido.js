@@ -63,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let rideCount = 0;
       let hasMoreData = true;
       let offset = 0;
-      const limit = 50;
-      let maxIterations = 10; // Safety limit
+      const limit = 20; // Changed from 10 to 20
+      let maxIterations = 30; // Safety limit
       let currentIteration = 0;
 
       while (hasMoreData && currentIteration < maxIterations) {
@@ -275,24 +275,24 @@ document.addEventListener("DOMContentLoaded", function () {
   // Add this CSS for the ripple effect
   const style = document.createElement("style");
   style.textContent = `
-        button {
-          position: relative;
-          overflow: hidden;
-        }
-        .ripple {
-          position: absolute;
-          border-radius: 50%;
-          background-color: rgba(255, 255, 255, 0.3);
-          transform: scale(0);
-          animation: ripple 0.6s linear;
-          pointer-events: none;
-        }
-        @keyframes ripple {
-          to {
-            transform: scale(2.5);
-            opacity: 0;
+          button {
+            position: relative;
+            overflow: hidden;
           }
-        }
-      `;
+          .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+          }
+          @keyframes ripple {
+            to {
+              transform: scale(2.5);
+              opacity: 0;
+            }
+          }
+        `;
   document.head.appendChild(style);
 });
