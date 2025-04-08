@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Get all necessary cookies
+      const isAuth = await chrome.cookies.get({
+        url: "https://www.zeptonow.com",
+        name: "isAuth",
+      });
+
       const accessTokenCookie = await chrome.cookies.get({
         url: "https://www.zeptonow.com",
         name: "accessToken",
@@ -58,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         name: "refreshToken",
       });
 
-      if (!accessTokenCookie || !refreshTokenCookie) {
+      if (!isAuth || !accessTokenCookie || !refreshTokenCookie) {
         throw new Error("Please login to Zepto first");
       }
 
@@ -73,6 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
       let endOfList = false;
       let page = 1;
       let maxPages = 50; // Safety limit
+
+      const cookieString = `isAuth=${isAuth.value}; accessToken=${accessTokenCookie.value}; refreshToken=${refreshTokenCookie.value}`;
+      console.log("Cookie string:", cookieString);
 
       while (!endOfList && page <= maxPages) {
         try {
@@ -94,9 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
+                    Cookie: cookieString,
                   },
                 }
               );
+              console.log("response", response);
 
               if (!response.ok) {
                 throw new Error(`Failed to fetch orders: ${response.status}`);
@@ -106,6 +116,8 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             args: [page],
           });
+
+          console.log("result", result);
 
           const data = result[0].result;
           console.log("Data received:", data);
